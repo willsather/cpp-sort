@@ -20,17 +20,19 @@ enable_testing()
 add_library(LRUCache INTERFACE)
 target_include_directories(LRUCache INTERFACE ${PROJECT_SOURCE_DIR}/src)
 
+# add the lru cache test
 add_executable(
-        lru_test
+        cache_tests
         tests/test_lru_cache.cpp
+        tests/test_time_based_cache.cpp
 )
 
 target_link_libraries(
-        lru_test
+        cache_tests
         LRUCache
         GTest::gtest_main
 )
 
 # Use GoogleTest CMake support to discover tests
 include(GoogleTest)
-gtest_discover_tests(lru_test)
+gtest_discover_tests(cache_tests)
