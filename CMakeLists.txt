@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.29)
 project(cpp_cache)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_OSX_ARCHITECTURES "arm64")
 
@@ -18,13 +18,17 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_library(LRUCache INTERFACE)
-target_include_directories(LRUCache INTERFACE ${PROJECT_SOURCE_DIR}/src)
+add_library(LFUCache INTERFACE)
 
-# add the lru cache test
+target_include_directories(LRUCache INTERFACE ${PROJECT_SOURCE_DIR}/src)
+target_include_directories(LFUCache INTERFACE ${PROJECT_SOURCE_DIR}/src)
+
+# create executable for unit tests
 add_executable(
         cache_tests
         tests/test_lru_cache.cpp
         tests/test_time_based_cache.cpp
+        tests/test_lfu_cache.cpp
 )
 
 target_link_libraries(
@@ -33,6 +37,6 @@ target_link_libraries(
         GTest::gtest_main
 )
 
-# Use GoogleTest CMake support to discover tests
+# Use GoogleTest to discover tests
 include(GoogleTest)
 gtest_discover_tests(cache_tests)

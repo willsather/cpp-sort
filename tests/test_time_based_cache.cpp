@@ -29,17 +29,17 @@ TEST(TimeBasedCacheTest, ExpirationTest)
     EXPECT_EQ(cache.get(2), std::nullopt);
 }
 
-TEST(TimeBasedCacheTest, RefreshTest)
+TEST(TimeBasedCacheTest, UpdateExistingKeyRefreshTest)
 {
     TimeBasedCache<int, std::string> cache(std::chrono::seconds(3));
 
     cache.put(1, "one");
     std::this_thread::sleep_for(std::chrono::seconds(2));
 
-    cache.put(1, "new one"); // this should refresh the expiration time
+    cache.put(1, "uno"); // this should refresh the expiration time
     std::this_thread::sleep_for(std::chrono::seconds(2));
 
-    EXPECT_EQ(cache.get(1).value(), "new one"); // should still be available
+    EXPECT_EQ(cache.get(1).value(), "uno"); // should still be available
 }
 
 TEST(TimeBasedCacheTest, CleanupTest)
