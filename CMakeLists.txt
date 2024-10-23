@@ -24,8 +24,9 @@ target_include_directories(SortStrategies INTERFACE ${PROJECT_SOURCE_DIR}/src)
 
 add_executable(
         sort_tests
-        tests/test_quick_sort.cpp
         tests/test_bubble_sort.cpp
+        tests/test_merge_sort.cpp
+        tests/test_quick_sort.cpp
 )
 
 target_link_libraries(
