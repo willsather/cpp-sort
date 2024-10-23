@@ -3,7 +3,7 @@
 
 class QuickSortTest : public AbstractSortTest {
 protected:
-    Sort* getSorter() override {
+    Sort *getSorter() override {
         return new QuickSort();
     }
 };

@@ -9,5 +9,5 @@ class Sort {
 public:
     virtual ~Sort() = default;
 
-    virtual void sort(std::vector<int>& data) = 0;
+    virtual void sort(std::vector<int> &data) = 0;
 };

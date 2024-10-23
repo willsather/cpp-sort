@@ -5,10 +5,10 @@
 
 class AbstractSortTest : public ::testing::Test {
 protected:
-    virtual Sort* getSorter() = 0;
+    virtual Sort *getSorter() = 0;
 
     void testEmptyVector() {
-        Sort* sorter = getSorter();
+        Sort *sorter = getSorter();
         std::vector<int> data;
 
         sorter->sort(data);
@@ -17,7 +17,7 @@ protected:
     }
 
     void testSingleElement() {
-        Sort* sorter = getSorter();
+        Sort *sorter = getSorter();
         std::vector data = {1};
 
         sorter->sort(data);
@@ -26,7 +26,7 @@ protected:
     }
 
     void testSortsCorrectly() {
-        Sort* sorter = getSorter();
+        Sort *sorter = getSorter();
         std::vector data = {3, 6, 8, 10, 1, 2, 1};
 
         sorter->sort(data);
@@ -35,7 +35,7 @@ protected:
     }
 
     void testAlreadySorted() {
-        Sort* sorter = getSorter();
+        Sort *sorter = getSorter();
         std::vector data = {1, 2, 3, 4, 5};
 
         sorter->sort(data);
@@ -44,7 +44,7 @@ protected:
     }
 
     void testReverseSorted() {
-        Sort* sorter = getSorter();
+        Sort *sorter = getSorter();
         std::vector data = {5, 4, 3, 2, 1};
 
         sorter->sort(data);

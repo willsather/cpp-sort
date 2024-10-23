@@ -6,39 +6,42 @@
 #include "sort.hpp"
 #include <list>
 
-class QuickSort : public Sort {
+class QuickSort final : public Sort {
 public:
-    void sort(std::vector<int>& data) override;
+    void sort(std::vector<int> &data) override;
 
 private:
-    void quickSort(std::vector<int>& data, int low, int high);
-    int partition(std::vector<int>& data, int low, int high);
+    static void quickSort(std::vector<int> &data, int start, int end);
+
+    static int partition(std::vector<int> &data, int start, int end);
 };
 
-inline void QuickSort::sort(std::vector<int>& data) {
-    if (data.size() <= 1) return;
+inline void QuickSort::sort(std::vector<int> &data) {
     quickSort(data, 0, data.size() - 1);
 }
 
-inline void QuickSort::quickSort(std::vector<int>& data, int low, int high) {
-    if (low < high) {
-        int pi = partition(data, low, high);
-        quickSort(data, low, pi - 1);
-        quickSort(data, pi + 1, high);
+inline void QuickSort::quickSort(std::vector<int> &data, const int start, const int end) {
+    if (start >= end) {
+        return;
     }
+
+    const int pivot = partition(data, start, end);
+
+    quickSort(data, start, pivot - 1);
+    quickSort(data, pivot + 1, end);
 }
 
-int QuickSort::partition(std::vector<int>& data, int low, int high) {
-    int pivot = data[high];
-    int i = low - 1;
+inline int QuickSort::partition(std::vector<int> &data, const int start, const int end) {
+    const int pivot = data[end];
+    int i = start - 1;
 
-    for (int j = low; j < high; ++j) {
+    for (int j = start; j < end; ++j) {
         if (data[j] < pivot) {
             ++i;
             std::swap(data[i], data[j]);
         }
     }
 
-    std::swap(data[i + 1], data[high]);
+    std::swap(data[i + 1], data[end]);
     return i + 1;
 }
