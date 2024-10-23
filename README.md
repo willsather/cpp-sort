@@ -1,16 +1,11 @@
-# C++ Cache
+# C++ Sort
 
-This repository contains implementations of various caching strategies in C++, including LRU (Least Recently Used), LFU (Least Frequently Used), and Time-Based caching.
+This repository contains implementations of various sorting strategies in C++.
 
 ## Table of Contents
 
 1. [Setup](#setup)
-2. [Building the Project](#building-the-project)
-3. [Running Tests](#running-tests)
-4. [Caching Strategies](#caching-strategies)
-   - [LRU Cache](#lru-cache)
-   - [LFU Cache](#lfu-cache)
-   - [Time-Based Cache](#time-based-cache)
+2. [Sorting Strategies](#sorting-strategies)
 
 ## Setup
 
@@ -38,20 +33,7 @@ To run the tests, use the provided test script:
 
 This script will build the project and run all tests using CTest.
 
-## Caching Strategies
+## Sorting Strategies
 
 > [!NOTE]  
-> Each caching strategy is implemented as a separate class that inherits from a common [`Cache`](./src/cache.hpp) interface, allowing for easy interchangeability and extension.
-
-
-### LRU Cache
-
-The Least Recently Used (LRU) cache discards the least recently used items first when the cache reaches its capacity. This implementation uses a combination of a hash map and a doubly linked list to achieve O(1) time complexity for both insertion and lookup.
-
-### LFU Cache
-
-The Least Frequently Used (LFU) cache discards the least frequently used items first. If there's a tie, it removes the least recently used among the candidates. This implementation uses multiple hash maps to keep track of frequencies and achieve O(1) time complexity for both insertion and lookup.
-
-### Time-Based Cache
-
-The Time-Based cache automatically expires entries after a specified time-to-live (TTL) duration. It uses a hash map to store key-value pairs along with their expiration times. The cleanup of expired entries is performed lazily during insertion and lookup operations.
+> Each caching strategy is implemented as a separate class that inherits from a common [`Sort`](./src/sort.hpp) interface, allowing for easy interchangeability and extension.
